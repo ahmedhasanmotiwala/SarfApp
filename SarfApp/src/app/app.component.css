@@ -1,0 +1,44 @@
+.body{
+    background-color: #f5f5f5 !important;
+}
+.contentPadding{
+    padding-right: 10px;
+    padding-top:10px; 
+}
+.border{
+    border-top: 1px solid #f5f5f5;
+    font-weight: bold;
+}
+.example-scrolling-content {
+    overflow: hidden;
+}
+.example-sidenav-fab-container {
+    width: 100%;
+    height: 900px;
+}
+.example-sidenav-fab-container .mat-sidenav-content,
+.example-sidenav-fab-container md-sidenav {
+    display: flex;
+    overflow: visible;
+}
+.example-fab {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.side-menu-container {
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+
+    background-color: #eee;
+    border: 1px solid #f5f5f5;
+}
+.content-heading{
+    padding-top: 20px;
+    background-color: #eee;
+    height: 70px;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}

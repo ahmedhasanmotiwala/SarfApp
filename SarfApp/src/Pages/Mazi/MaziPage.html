@@ -1,0 +1,48 @@
+<div class="ddlMargin">
+    <md-select multiple [style.width]="'150px'" placeholder="صیغۃ" [(ngModel)]="SelectedSega" name="Sega">
+        <md-option *ngFor="let sega of SegaTypes" [value]="sega.Id">
+            {{sega.Sega}}
+        </md-option>
+    </md-select>
+    <p> {{SelectedSega}}</p>
+</div>
+<div class="ddlMargin">
+    <md-select placeholder="شش اقسام" [(ngModel)]="SelectedSashAqsam" name="SashAqsam">
+        <md-option *ngFor="let sashAqsam of SashAqsams" [value]="sashAqsam.Id">
+            {{sashAqsam.SashAqsam}}
+        </md-option>
+    </md-select>
+</div>
+<div class="ddlMargin">
+    <md-select placeholder="ہفت اقسام" [(ngModel)]="SelectedHaftAqsam" name="HaftAqsam">
+        <md-option *ngFor="let haftAqsam of HaftAqsams" [value]="haftAqsam.Id">
+            {{haftAqsam.HaftAqsam}}
+        </md-option>
+    </md-select>
+</div>
+<div class="ddlMargin clearLeft" >
+    <md-select placeholder="ابواب" (ngModelChange)="onBaabChange()" [(ngModel)]="SelectedBaab" name="Baabs">
+        <md-option *ngFor="let baab of Abwaab" [value]="baab.Id">
+            {{baab.Baab}}
+        </md-option>
+    </md-select>
+</div>
+
+<div class="clear paddingTop">
+    <table>
+        <th>No</th>
+        <th>ماضی مطلق مثبت معروف</th>
+        <th>صیغہ</th>
+        <th>شش اقسام</th>
+        <th>ہفت اقسام</th>
+        <th>باب</th>
+        <tr *ngFor="let mazi of MaziGardans | segaType : SelectedSega">
+            <td>{{mazi.Id}}</td>
+            <td>{{mazi.MaziMutlaqMusbatMaroof | sega : SelectedBaab }}</td>
+            <td>{{mazi.Sega}}</td>
+            <td>{{mazi.SashAqsam}}</td>
+            <td>{{mazi.HaftAqsam}}</td>
+            <td>{{mazi.Baab | baab : SelectedBaab}}</td>
+        </tr>
+    </table>
+</div>

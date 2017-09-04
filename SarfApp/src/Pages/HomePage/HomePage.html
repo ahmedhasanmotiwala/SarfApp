@@ -1,0 +1,65 @@
+<div class="cpadding">
+  <!-- <label>{{status}}</label> -->
+  <md-radio-group class="example-radio-group" (ngModelChange)="onChange()" [(ngModel)]="SelectedSegaValue">
+    <md-radio-button class="example-radio-button cpadding" *ngFor="let sega of segay" [value]="sega.value">
+      {{sega.viewValue}}
+    </md-radio-button>
+  </md-radio-group>
+  <!-- <input [(ngModel)]="maroof" (ngModelChange)="onChange()" style="display:block" type="checkbox" /> -->
+  <div class="table-responsive">
+    <table class="table" style="font-size:30px; padding:25px; border:3px">
+      <tr>
+        <td>{{p3}}</td>
+        <td><span [hidden]="!maroof"> {{p2}} </span></td>
+        <td>{{p1}}</td>
+      </tr>
+      <tr>
+        <td> {{name1}} </td>
+        <td> {{name2}} </td>
+        <td> {{name3}} </td>
+      </tr>
+      <tr [hidden]="maroof">
+        <td></td>
+        <td><span [hidden]="maroof"> {{p2}} </span></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+  </div>
+  Type Your Root Words Here
+  <br/>
+  <br/>
+  <input [(ngModel)]="rootWord1" maxlength="1" style="display:inline" type="text" />
+  <input [(ngModel)]="rootWord2" maxlength="1" style="display:inline" type="text" />
+  <input [(ngModel)]="rootWord3" maxlength="1" style="display:inline" type="text" />
+  <br/><br/>
+  <panel [title]="title_Mazi">
+    <input [(ngModel)]="isMaziManfi" type="checkbox" />
+    <strong>منفی</strong>
+    <input [(ngModel)]="isMaziMajhool" type="checkbox" />
+    <strong>مجہول</strong>
+    <br/>
+    <br/>
+    <div style="font-size:20px; padding:5px;" *ngFor="let item of items.mazi_musbat_maroof let indx = index;">
+      <li *ngIf="!isMaziMajhool">{{item.Id}} : <span *ngIf="isMaziManfi">مَا</span> {{ item.sega.replace(item.sega.substring(0,1),rootWord1).replace(item.sega.substring(2,3),rootWord2).replace(item.sega.substring(4,5),rootWord3)}}</li>
+      <li *ngIf="isMaziMajhool">{{item.Id}} : <span *ngIf="isMaziManfi">مَا</span> {{ item.sega.replace(item.sega.substring(0,1),rootWord1).replace(item.sega.substring(2,3),rootWord2).replace(item.sega.substring(4,5),rootWord3).replace(item.sega.substring(1,2),Expressions3).replace(item.sega.substring(3,4),Expressions2)}}</li>
+    </div>
+  </panel>
+  <panel [title]="title_Muzare">
+    <input [(ngModel)]="isMuzareManfi" type="checkbox" />
+    <strong>منفی</strong>
+    <input [(ngModel)]="isMuzareMajhool" type="checkbox" />
+    <strong>مجہول</strong>
+    <br/>
+    <br/>
+    <div style="font-size:20px; padding:5px;" *ngFor="let item of items.muzare_musbat_maroof let indx = index;">
+      <li *ngIf="!isMuzareMajhool">{{item.Id}} : <span *ngIf="isMuzareManfi">لَا</span> {{ item.sega.replace(item.sega.substring(2,3),rootWord1).replace(item.sega.substring(4,5),rootWord2).replace(item.sega.substring(6,7),rootWord3)}}</li>
+      <li *ngIf="isMuzareMajhool">{{item.Id}} : <span *ngIf="isMuzareManfi">لَا</span> {{ item.sega.replace(item.sega.substring(2,3),rootWord1).replace(item.sega.substring(4,5),rootWord2).replace(item.sega.substring(6,7),rootWord3).replace(item.sega.substring(1,2),Expressions3)}}</li>
+    </div>
+  </panel>
+
+  <div *ngFor="let item of QuesAns.Mazi | FILTER">
+    <quiz [QID]="item.ID" [Answer]="item.answer" [question]="item.question" [option1]="item.option1" [option2]="item.option2"
+      [option3]="item.option3" [option4]="item.option4"></quiz>
+  </div>
+</div>
