@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
-
+import { CommonModule, APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
 // Components
 import { AppComponent } from './app.component';
 import { SarfQuiz } from '../Pages/SarfQuiz/SarfQuiz';
@@ -78,7 +78,8 @@ const appRoutes: Routes = [
     MdSelectModule,
     MdTableModule
   ],
-  providers: [ApiCallService, Global, SarfQuiz, Quiz, Gardanen],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' },
+  { provide: LocationStrategy, useClass: HashLocationStrategy },ApiCallService, Global, SarfQuiz, Quiz, Gardanen],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
